@@ -8,6 +8,21 @@ output "id" {
   value       = local.id
 }
 
+output "id_parts" {
+  description = "Ordered ID parts (after filtering empty values) used to build id."
+  value       = local.id_parts
+}
+
+output "label_values" {
+  description = "Raw label values before filtering empties and before merging extra_labels."
+  value       = local.label_values
+}
+
+output "base_labels" {
+  description = "Base labels derived from label_values with empty values removed (before merging extra_labels)."
+  value       = local.base_labels
+}
+
 output "labels" {
   description = "Map of labels for use with hcloud resources."
   value       = local.labels

@@ -8,6 +8,10 @@
 
 Terraform module to generate consistent naming and labeling for Hetzner Cloud resources.
 
+## Documentation
+
+- [Architecture](docs/architecture.md)
+
 ## Usage
 
 ```hcl
@@ -72,9 +76,12 @@ No resources.
 
 | Name | Description |
 | ---- | ----------- |
+| <a name="output_base_labels"></a> [base\_labels](#output\_base\_labels) | Base labels derived from label\_values with empty values removed (before merging extra\_labels). |
 | <a name="output_enabled"></a> [enabled](#output\_enabled) | Whether the module is enabled. |
 | <a name="output_environment"></a> [environment](#output\_environment) | The environment input. |
 | <a name="output_id"></a> [id](#output\_id) | Generated ID based on label\_order. |
+| <a name="output_id_parts"></a> [id\_parts](#output\_id\_parts) | Ordered ID parts (after filtering empty values) used to build id. |
+| <a name="output_label_values"></a> [label\_values](#output\_label\_values) | Raw label values before filtering empties and before merging extra\_labels. |
 | <a name="output_labels"></a> [labels](#output\_labels) | Map of labels for use with hcloud resources. |
 | <a name="output_labels_as_list"></a> [labels\_as\_list](#output\_labels\_as\_list) | Labels as a list of key-value objects. |
 | <a name="output_managed_by"></a> [managed\_by](#output\_managed\_by) | The managed\_by input. |

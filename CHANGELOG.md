@@ -1,3 +1,10 @@
+## [0.3.4](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.3...v0.3.4) (2026-04-20)
+
+
+### Bug Fixes
+
+* correct terraform-docs download URL in pre-commit workflow ([c93929c](https://github.com/terraform-hc-modules/terraform-hcloud-labels/commit/c93929c8279ae3f157127b6eed2de79a107a9231))
+
 ## [0.3.3](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.2...v0.3.3) (2026-04-20)
 
 

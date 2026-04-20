@@ -19,6 +19,14 @@ jobs:
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v4
 
+      - name: Setup terraform-docs
+        uses: terraform-docs/setup-terraform-docs@v1
+
+      - name: Setup tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          version: latest
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:

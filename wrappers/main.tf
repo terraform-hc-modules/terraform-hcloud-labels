@@ -19,8 +19,3 @@ variable "items" {
   type        = any
   default     = {}
 }
-
-output "wrapper" {
-  description = "Map of label outputs"
-  value       = module.wrapper
-}

@@ -78,7 +78,7 @@ No resources.
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Set to false to prevent the module from creating any resources. | `bool` | `true` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name (e.g., dev, staging, prod). | `string` | `""` | no |
 | <a name="input_extra_labels"></a> [extra\_labels](#input\_extra\_labels) | Additional labels to merge with generated labels. | `map(string)` | `{}` | no |
-| <a name="input_label_order"></a> [label\_order](#input\_label\_order) | Order of labels to include in the name. Set to empty list to disable. | `list(string)` | <pre>["environment", "name"]</pre> | no |
+| <a name="input_label_order"></a> [label\_order](#input\_label\_order) | Order of labels to include in the name. Set to empty list to disable. | `list(string)` | <pre>[<br/>  "environment",<br/>  "name"<br/>]</pre> | no |
 | <a name="input_managed_by"></a> [managed\_by](#input\_managed\_by) | Tool managing this resource. | `string` | `"terraform"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the application or resource. | `string` | n/a | yes |
 | <a name="input_owner"></a> [owner](#input\_owner) | Owner of the resource (team or individual). | `string` | `""` | no |

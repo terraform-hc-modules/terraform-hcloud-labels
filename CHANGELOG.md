@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.0...v0.3.1) (2026-04-20)
+
+
+### Bug Fixes
+
+* make pre-commit workflow pass in CI ([de8fa75](https://github.com/terraform-hc-modules/terraform-hcloud-labels/commit/de8fa757d30d86fc5dfcaf523631f3672acb0d05))
+
 # [0.3.0](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.2.0...v0.3.0) (2026-04-20)
 
 

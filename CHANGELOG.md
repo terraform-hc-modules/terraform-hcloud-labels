@@ -1,3 +1,10 @@
+## [0.3.5](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.4...v0.3.5) (2026-04-20)
+
+
+### Bug Fixes
+
+* install terraform-docs in ci docs job ([9dd32af](https://github.com/terraform-hc-modules/terraform-hcloud-labels/commit/9dd32af80f9138289f664752bf85a7236d847131))
+
 ## [0.3.4](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.3...v0.3.4) (2026-04-20)
 
 

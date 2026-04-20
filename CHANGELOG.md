@@ -1,3 +1,10 @@
+## [0.3.2](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.1...v0.3.2) (2026-04-20)
+
+
+### Bug Fixes
+
+* use supported terraform-docs action in pre-commit workflow ([669c5bc](https://github.com/terraform-hc-modules/terraform-hcloud-labels/commit/669c5bc8ad86e2ebc94d8bae2e4f64ad44ee3782))
+
 ## [0.3.1](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.0...v0.3.1) (2026-04-20)
 
 

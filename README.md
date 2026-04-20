@@ -1,5 +1,11 @@
 # Hetzner Cloud Labels Module
 
+[![Terraform](https://img.shields.io/badge/Terraform-%3E%3D1.0-blueviolet)](https://www.terraform.io/)
+[![License: MPL-2.0](https://img.shields.io/badge/License-MPL--2.0-blue.svg)](https://opensource.org/licenses/MPL-2.0)
+[![CI](https://github.com/terraform-hc-modules/terraform-hcloud-labels/actions/workflows/ci.yml/badge.svg)](https://github.com/terraform-hc-modules/terraform-hcloud-labels/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/terraform-hc-modules/terraform-hcloud-labels)](https://github.com/terraform-hc-modules/terraform-hcloud-labels/releases)
+
+
 Terraform module to generate consistent naming and labeling for Hetzner Cloud resources.
 
 ## Usage

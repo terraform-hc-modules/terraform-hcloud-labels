@@ -1,3 +1,10 @@
+## [0.3.3](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.2...v0.3.3) (2026-04-20)
+
+
+### Bug Fixes
+
+* stabilize pre-commit CI by installing required tools ([c99de6e](https://github.com/terraform-hc-modules/terraform-hcloud-labels/commit/c99de6e8494b8ff9c53de4927f9b953eafe21501))
+
 ## [0.3.2](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.1...v0.3.2) (2026-04-20)
 
 

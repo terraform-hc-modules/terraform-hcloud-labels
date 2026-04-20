@@ -4,31 +4,41 @@ output "enabled" {
 }
 
 output "id" {
-  description = "Generated ID/name based on label_order and delimiter."
+  description = "Generated ID based on label_order."
   value       = local.id
 }
 
-output "name" {
-  description = "The name variable value."
-  value       = var.name
-}
-
-output "environment" {
-  description = "The environment variable value."
-  value       = var.environment
-}
-
-output "project" {
-  description = "The project variable value."
-  value       = var.project
-}
-
 output "labels" {
-  description = "Map of labels to apply to resources."
+  description = "Map of labels for use with hcloud resources."
   value       = local.labels
 }
 
 output "labels_as_list" {
-  description = "Labels formatted as a list of key=value strings."
-  value       = [for k, v in local.labels : "${k}=${v}"]
+  description = "Labels as a list of key-value objects."
+  value       = local.labels_as_list
+}
+
+output "name" {
+  description = "The name input."
+  value       = var.name
+}
+
+output "environment" {
+  description = "The environment input."
+  value       = var.environment
+}
+
+output "project" {
+  description = "The project input."
+  value       = var.project
+}
+
+output "owner" {
+  description = "The owner input."
+  value       = var.owner
+}
+
+output "managed_by" {
+  description = "The managed_by input."
+  value       = var.managed_by
 }

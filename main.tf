@@ -1,31 +1,32 @@
-# -----------------------------------------------------------------------------
-# Module: hcloud-labels
-# Terraform module for consistent labeling and naming conventions in Hetzner Cloud
-# -----------------------------------------------------------------------------
-
 locals {
   enabled = var.enabled
 
-  # Build labels map from variables
-  generated_labels = {
-    for k, v in {
-      "name"        = var.name
-      "environment" = var.environment
-      "project"     = var.project
-      "owner"       = var.owner
-      "managed_by"  = var.managed_by
-    } : k => v if v != ""
+  label_values = {
+    name        = var.name
+    environment = var.environment
+    project     = var.project
+    owner       = var.owner
+    managed_by  = var.managed_by
   }
 
-  # Merge generated labels with extra labels (extra_labels takes precedence)
-  labels = local.enabled ? merge(local.generated_labels, var.extra_labels) : {}
+  id_parts = [
+    for label in var.label_order : local.label_values[label]
+    if try(local.label_values[label], "") != ""
+  ]
 
-  # Build name from label_order
-  name_parts = local.enabled ? [
-    for label in var.label_order : local.generated_labels[label]
-    if contains(keys(local.generated_labels), label) && local.generated_labels[label] != ""
-  ] : []
+  id = local.enabled ? lower(join(var.delimiter, local.id_parts)) : ""
 
-  # Generate the full name with delimiter
-  id = local.enabled ? join(var.delimiter, local.name_parts) : ""
+  base_labels = {
+    for k, v in local.label_values : k => v
+    if v != ""
+  }
+
+  labels = local.enabled ? merge(local.base_labels, var.extra_labels) : {}
+
+  labels_as_list = [
+    for k, v in local.labels : {
+      key   = k
+      value = v
+    }
+  ]
 }

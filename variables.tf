@@ -1,11 +1,13 @@
-variable "name" {
-  description = "Name of the application or resource."
-  type        = string
+variable "enabled" {
+  description = "Set to false to prevent the module from creating any resources."
+  type        = bool
+  default     = true
+}
 
-  validation {
-    condition     = length(var.name) > 0 && length(var.name) <= 63
-    error_message = "Name must be between 1 and 63 characters."
-  }
+variable "name" {
+  description = "Name of the resource."
+  type        = string
+  default     = ""
 }
 
 variable "environment" {
@@ -39,19 +41,13 @@ variable "extra_labels" {
 }
 
 variable "label_order" {
-  description = "Order of labels to include in the name. Set to empty list to disable."
+  description = "Order of labels to include in the generated ID."
   type        = list(string)
   default     = ["environment", "name"]
 }
 
 variable "delimiter" {
-  description = "Delimiter between labels in the generated name."
+  description = "Delimiter between labels in the generated ID."
   type        = string
   default     = "-"
-}
-
-variable "enabled" {
-  description = "Set to false to prevent the module from creating any resources."
-  type        = bool
-  default     = true
 }

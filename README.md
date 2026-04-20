@@ -1,74 +1,81 @@
-# Terraform Module Template (Hetzner `hcloud`)
+# Terraform Module: hcloud-labels
 
-This repository is a **GitHub template** used to create per-module repositories for the [Terraform Registry](https://registry.terraform.io/) under the GitHub organization [`terraform-hc-modules`](https://github.com/terraform-hc-modules).
+Terraform module for consistent labeling and naming conventions in Hetzner Cloud
 
-## Provider
+[![CI](https://github.com/terraform-hc-modules/terraform-hcloud-labels/actions/workflows/ci.yml/badge.svg)](https://github.com/terraform-hc-modules/terraform-hcloud-labels/actions/workflows/ci.yml)
+[![License: MPL-2.0](https://img.shields.io/badge/License-MPL--2.0-blue.svg)](https://opensource.org/licenses/MPL-2.0)
 
-All modules created from this template target the Hetzner Cloud provider:
+## Usage
 
-- **Provider**: [`hetznercloud/hcloud`](https://registry.terraform.io/providers/hetznercloud/hcloud/latest)
+```hcl
+module "hcloud-labels" {
+  source  = "terraform-hc-modules/labels/hcloud"
+  version = "~> 0.1"
 
-## How to Use This Template
+  name = "my-resource"
 
-### Option 1: GitHub Template (Recommended)
-
-1. Click "Use this template" on GitHub
-2. Name your repository `terraform-hcloud-<resource>` (e.g., `terraform-hcloud-server`)
-3. Clone and replace placeholders
-
-### Option 2: Script Generation
-
-```bash
-python3 scripts/new_module_repo.py \
-  --module-name "hcloud-server" \
-  --registry-name "server" \
-  --description "Manage Hetzner Cloud servers with opinionated defaults."
+  labels = {
+    environment = "production"
+    managed_by  = "terraform"
+  }
+}
 ```
 
-## Placeholders
+## Requirements
 
-Files contain these placeholders that must be replaced:
+<!-- BEGIN_TF_DOCS -->
+## Requirements
 
-| Placeholder | Description | Example |
-|-------------|-------------|---------|
-| `{{MODULE_NAME}}` | Human-readable module name | `hcloud-server` |
-| `{{MODULE_REGISTRY_NAME}}` | Registry module name (repo suffix) | `server` |
-| `{{MODULE_DESCRIPTION}}` | One-line module description | `Manage Hetzner Cloud servers.` |
+| Name | Version |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
+| <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | >= 1.49.0 |
 
-## Template Structure
+## Providers
 
-```
-terraform-module-template/
-├── main.tf              # Primary resources
-├── variables.tf         # Input variables
-├── outputs.tf           # Output values
-├── terraform.tf         # Version constraints
-├── README.module.md     # Template for generated README.md
-├── wrappers/            # Terragrunt wrapper module
-├── examples/
-│   ├── basic/           # Basic usage example
-│   └── terragrunt/      # Terragrunt example
-├── .github/workflows/
-│   ├── ci.yml           # CI pipeline (lint, validate, security)
-│   └── release.yml      # GitHub Release automation
-├── .tfsec/              # tfsec configuration
-├── .checkov.yml         # Checkov configuration
-├── .gitleaks.toml       # Gitleaks secret scanning
-├── .tflint.hcl          # TFLint configuration
-└── Makefile             # Development commands
-```
+No providers.
 
-## CI/CD Features
+## Modules
 
-The template includes comprehensive CI/CD:
+No modules.
 
-- **Terraform**: Format check, init, validate
-- **OpenTofu**: Full compatibility testing
-- **Terragrunt**: Wrapper validation
-- **Security**: gitleaks, tfsec, checkov
-- **Linting**: TFLint with recommended preset
-- **Documentation**: terraform-docs auto-generation
+## Resources
+
+No resources.
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+| ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_labels"></a> [labels](#input\_labels) | A map of labels to apply to all supported resources. | `map(string)` | `{}` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name prefix for all resources created by this module. | `string` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+| ---- | ----------- |
+| <a name="output_labels"></a> [labels](#output\_labels) | The labels applied to resources created by this module. |
+| <a name="output_name"></a> [name](#output\_name) | The name prefix used for resources created by this module. |
+<!-- END_TF_DOCS -->
+
+## Tooling Compatibility
+
+| Tool | Status |
+|------|--------|
+| Terraform | ✅ Supported |
+| OpenTofu | ✅ Supported |
+| Terragrunt | ✅ Supported |
+
+## Examples
+
+- [Basic](./examples/basic) - Minimal configuration example
+- [Terragrunt](./examples/terragrunt/basic) - Terragrunt wrapper example
+
+## Contributing
+
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) and submit pull requests to the `main` branch.
 
 ## License
 
-[MPL-2.0](LICENSE)
+This module is licensed under the [MPL-2.0 License](LICENSE).
+

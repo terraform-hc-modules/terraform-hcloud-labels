@@ -15,7 +15,7 @@ Important: since Terraform/OpenTofu cannot pass arbitrary maps as module argumen
 
 ```hcl
 terraform {
-  source = "terraform-hc-modules/{{MODULE_REGISTRY_NAME}}/hcloud//wrappers"
+  source = "terraform-hc-modules/labels/hcloud//wrappers"
 }
 
 inputs = {

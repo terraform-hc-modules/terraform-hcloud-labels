@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
-# Module: {{MODULE_NAME}}
-# {{MODULE_DESCRIPTION}}
+# Module: hcloud-labels
+# Terraform module for consistent labeling and naming conventions in Hetzner Cloud
 # -----------------------------------------------------------------------------
 
 

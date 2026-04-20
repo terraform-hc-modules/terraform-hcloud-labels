@@ -1,6 +1,6 @@
 # Examples
 
-This directory contains examples for the {{MODULE_NAME}} module.
+This directory contains examples for the hcloud-labels module.
 
 ## Examples
 

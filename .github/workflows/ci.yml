@@ -81,7 +81,7 @@ jobs:
           terragrunt-version: latest
 
       - name: Validate Example
-        working-directory: examples/terragrunt/basic
+        working-directory: _example/terragrunt/basic
         run: terragrunt validate
 
   security:

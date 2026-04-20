@@ -19,15 +19,23 @@ jobs:
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v4
 
-      - name: Setup terraform-docs
-        uses: terraform-docs/gh-actions@v1
-        with:
-          working-dir: .
+      - name: Install terraform-docs
+        run: |
+          set -euo pipefail
+          VERSION="v0.20.0"
+          curl -sSL -o /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/${VERSION}/terraform-docs-${VERSION#v}-linux-amd64.tar.gz"
+          tar -xzf /tmp/terraform-docs.tar.gz -C /tmp terraform-docs
+          sudo mv /tmp/terraform-docs /usr/local/bin/terraform-docs
+          terraform-docs version
 
-      - name: Setup tfsec
-        uses: aquasecurity/tfsec-action@v1.0.3
-        with:
-          version: latest
+      - name: Install tfsec
+        run: |
+          set -euo pipefail
+          VERSION="v1.28.14"
+          curl -sSL -o /tmp/tfsec "https://github.com/aquasecurity/tfsec/releases/download/${VERSION}/tfsec-linux-amd64"
+          chmod +x /tmp/tfsec
+          sudo mv /tmp/tfsec /usr/local/bin/tfsec
+          tfsec --version
 
       - name: Setup Python
         uses: actions/setup-python@v5

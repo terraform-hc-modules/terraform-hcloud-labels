@@ -51,4 +51,3 @@ flowchart TD
 - `label_order` controls which keys contribute to `id` and in what order.
 - Empty label values are excluded from `id_parts` and `base_labels`.
 - `labels` includes `extra_labels` merged on top of computed labels.
-

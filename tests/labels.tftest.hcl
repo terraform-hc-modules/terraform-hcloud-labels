@@ -128,4 +128,3 @@ run "validation_fails_for_empty_extra_label_key_or_value" {
     }
   }
 }
-

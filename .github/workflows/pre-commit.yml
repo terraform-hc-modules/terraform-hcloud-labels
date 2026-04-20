@@ -20,7 +20,9 @@ jobs:
         uses: terraform-linters/setup-tflint@v4
 
       - name: Setup terraform-docs
-        uses: terraform-docs/setup-terraform-docs@v1
+        uses: terraform-docs/gh-actions@v1
+        with:
+          working-dir: .
 
       - name: Setup tfsec
         uses: aquasecurity/tfsec-action@v1.0.3

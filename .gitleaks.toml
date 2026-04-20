@@ -1,0 +1,17 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Allow example/placeholder values"
+regexes = [
+  '''example''',
+  '''changeme''',
+  '''placeholder'''
+]
+
+paths = [
+  '''examples/''',
+  '''.terraform/''',
+  '''.git/'''
+]
+

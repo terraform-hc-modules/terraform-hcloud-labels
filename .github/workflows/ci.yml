@@ -1,0 +1,158 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Init
+        run: terraform init -backend=false
+
+      - name: Validate
+        run: terraform validate
+
+      - name: Init Wrappers
+        run: terraform -chdir=wrappers init -backend=false
+
+      - name: Validate Wrappers
+        run: terraform -chdir=wrappers validate
+
+  opentofu:
+    name: OpenTofu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_wrapper: false
+
+      - name: Format Check
+        run: tofu fmt -check -recursive
+
+      - name: Init
+        run: tofu init -backend=false
+
+      - name: Validate
+        run: tofu validate
+
+      - name: Init Wrappers
+        run: tofu -chdir=wrappers init -backend=false
+
+      - name: Validate Wrappers
+        run: tofu -chdir=wrappers validate
+
+  terragrunt:
+    name: Terragrunt
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@v3
+        with:
+          terragrunt-version: latest
+
+      - name: Validate Example
+        working-directory: examples/terragrunt/basic
+        run: terragrunt validate
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Gitleaks
+        uses: jaxxstorm/action-install-gh-release@v1
+        with:
+          repo: gitleaks/gitleaks
+
+      - name: Run Gitleaks
+        run: gitleaks detect --source . --verbose --redact
+
+      - name: tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          additional_args: --exclude-downloaded-modules --minimum-severity MEDIUM
+
+      - name: Checkov
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: .
+          quiet: true
+          framework: terraform
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+
+      - name: Init TFLint
+        run: tflint --init
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Run TFLint
+        run: tflint -f compact --recursive
+
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup terraform-docs
+        uses: jaxxstorm/action-install-gh-release@v1
+        with:
+          repo: terraform-docs/terraform-docs
+
+      - name: Check README
+        run: |
+          if grep -q "BEGIN_TF_DOCS" README.md; then
+            terraform-docs markdown table --output-file README.md --output-mode inject .
+            git diff --exit-code README.md
+          else
+            echo "Skipping terraform-docs check (no TF_DOCS markers in README.md)"
+          fi

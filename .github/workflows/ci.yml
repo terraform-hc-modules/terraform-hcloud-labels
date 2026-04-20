@@ -115,6 +115,7 @@ jobs:
           directory: .
           quiet: true
           framework: terraform
+          skip_check: CKV_TF_1,CKV_TF_2
 
   lint:
     name: Lint

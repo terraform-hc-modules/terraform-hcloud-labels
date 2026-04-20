@@ -9,13 +9,19 @@ terraform {
   }
 }
 
-provider "hcloud" {
-  # Configure via environment variable:
-  # export HCLOUD_TOKEN="your-api-token"
-}
+provider "hcloud" {}
 
-module "this" {
+module "labels" {
   source = "../../"
 
-  name = "basic-example"
+  name        = "web-server"
+  environment = "dev"
+}
+
+output "id" {
+  value = module.labels.id
+}
+
+output "labels" {
+  value = module.labels.labels
 }

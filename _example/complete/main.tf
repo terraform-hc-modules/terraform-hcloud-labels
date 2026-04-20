@@ -9,20 +9,40 @@ terraform {
   }
 }
 
-provider "hcloud" {
-  # Configure via environment variable:
-  # export HCLOUD_TOKEN="your-api-token"
-}
+provider "hcloud" {}
 
-module "this" {
+module "labels" {
   source = "../../"
 
-  name = "complete-example"
+  name        = "api"
+  environment = "production"
+  project     = "ecommerce"
+  owner       = "platform-team"
+  managed_by  = "terraform"
 
-  labels = {
-    environment = "production"
-    team        = "platform"
-    managed_by  = "terraform"
-    project     = "infrastructure"
+  label_order = ["project", "environment", "name"]
+  delimiter   = "-"
+
+  extra_labels = {
+    "cost_center" = "engineering"
+    "compliance"  = "soc2"
   }
+}
+
+# Example: Use labels with a server resource
+# resource "hcloud_server" "example" {
+#   name        = module.labels.id
+#   server_type = "cx22"
+#   image       = "ubuntu-24.04"
+#   labels      = module.labels.labels
+# }
+
+output "id" {
+  description = "Generated resource ID"
+  value       = module.labels.id
+}
+
+output "labels" {
+  description = "Labels to apply to resources"
+  value       = module.labels.labels
 }

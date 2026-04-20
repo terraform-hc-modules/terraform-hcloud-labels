@@ -6,13 +6,14 @@ This directory contains examples for the hcloud-labels module.
 
 | Example | Description |
 |---------|-------------|
-| [basic](./_example/basic) | Minimal configuration |
-| [complete](./_example/complete) | Full configuration with all options |
+| [basic](./basic) | Minimal configuration |
+| [complete](./complete) | Full configuration with all options |
+| [terragrunt](./terragrunt) | Terragrunt wrapper example |
 
 ## Usage
 
 ```bash
-cd _example/basic  # or _example/complete
+cd _example/basic  # or complete/terragrunt
 
 export HCLOUD_TOKEN="your-api-token"
 

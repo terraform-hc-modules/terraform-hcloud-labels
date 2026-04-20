@@ -1,27 +1,14 @@
-terraform {
-  required_version = ">= 1.5.0"
-
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = ">= 1.49.0"
-    }
-  }
+locals {
+  name = "ex-${basename(path.cwd)}"
 }
 
-provider "hcloud" {}
+################################################################################
+# Labels Module
+################################################################################
 
 module "labels" {
   source = "../../"
 
-  name        = "web-server"
+  name        = local.name
   environment = "dev"
-}
-
-output "id" {
-  value = module.labels.id
-}
-
-output "labels" {
-  value = module.labels.labels
 }

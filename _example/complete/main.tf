@@ -1,20 +1,15 @@
-terraform {
-  required_version = ">= 1.5.0"
-
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = ">= 1.49.0"
-    }
-  }
+locals {
+  name = "ex-${basename(path.cwd)}"
 }
 
-provider "hcloud" {}
+################################################################################
+# Labels Module - Complete Example
+################################################################################
 
 module "labels" {
   source = "../../"
 
-  name        = "api"
+  name        = local.name
   environment = "production"
   project     = "ecommerce"
   owner       = "platform-team"
@@ -24,25 +19,48 @@ module "labels" {
   delimiter   = "-"
 
   extra_labels = {
-    "cost_center" = "engineering"
-    "compliance"  = "soc2"
+    cost_center = "engineering"
+    compliance  = "soc2"
+    team        = "devops"
   }
 }
 
-# Example: Use labels with a server resource
-# resource "hcloud_server" "example" {
-#   name        = module.labels.id
-#   server_type = "cx22"
-#   image       = "ubuntu-24.04"
-#   labels      = module.labels.labels
-# }
+################################################################################
+# Labels Module - Custom Delimiter
+################################################################################
 
-output "id" {
-  description = "Generated resource ID"
-  value       = module.labels.id
+module "labels_underscore" {
+  source = "../../"
+
+  name        = local.name
+  environment = "staging"
+  project     = "api"
+
+  label_order = ["project", "name", "environment"]
+  delimiter   = "_"
 }
 
-output "labels" {
-  description = "Labels to apply to resources"
-  value       = module.labels.labels
+################################################################################
+# Labels Module - Minimal Label Order
+################################################################################
+
+module "labels_minimal" {
+  source = "../../"
+
+  name        = local.name
+  environment = "dev"
+
+  label_order = ["name"]
+}
+
+################################################################################
+# Labels Module - Disabled
+################################################################################
+
+module "labels_disabled" {
+  source = "../../"
+
+  name        = local.name
+  environment = "test"
+  enabled     = false
 }

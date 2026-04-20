@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.1.0...v0.2.0) (2026-04-20)
+
+
+### Features
+
+* add pre-commit, semantic-release, and improve examples ([d19b04e](https://github.com/terraform-hc-modules/terraform-hcloud-labels/commit/d19b04ea90666f75354e625aca24286b3ccccff1))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

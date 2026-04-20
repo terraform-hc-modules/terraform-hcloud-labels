@@ -23,7 +23,7 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="v0.20.0"
-          curl -sSL -o /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/${VERSION}/terraform-docs-${VERSION#v}-linux-amd64.tar.gz"
+          curl -fsSL -o /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download//terraform-docs--linux-amd64.tar.gz"
           tar -xzf /tmp/terraform-docs.tar.gz -C /tmp terraform-docs
           sudo mv /tmp/terraform-docs /usr/local/bin/terraform-docs
           terraform-docs version

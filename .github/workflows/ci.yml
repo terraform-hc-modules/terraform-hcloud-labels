@@ -60,10 +60,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup terraform-docs
-        uses: jaxxstorm/action-install-gh-release@v1
-        with:
-          repo: terraform-docs/terraform-docs
+      - name: Install terraform-docs
+        run: |
+          set -euo pipefail
+          VERSION="v0.20.0"
+          curl -fsSL -o /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/${VERSION}/terraform-docs-${VERSION}-linux-amd64.tar.gz"
+          tar -xzf /tmp/terraform-docs.tar.gz -C /tmp terraform-docs
+          sudo mv /tmp/terraform-docs /usr/local/bin/terraform-docs
+          terraform-docs version
 
       - name: Check README
         run: |

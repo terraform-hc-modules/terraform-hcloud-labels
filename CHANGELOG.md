@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.2.0...v0.3.0) (2026-04-20)
+
+
+### Features
+
+* add validations, tests, and architecture docs ([3b86336](https://github.com/terraform-hc-modules/terraform-hcloud-labels/commit/3b86336731cf7a6fd24d0a445a41d0ba30ed7431))
+
 # [0.2.0](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.1.0...v0.2.0) (2026-04-20)
 
 

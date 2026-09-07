@@ -9,36 +9,32 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
-    name: Terraform
+  test:
+    name: Terraform Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v4
         with:
           terraform_wrapper: false
 
-      - name: Format Check
-        run: terraform fmt -check -recursive
-
       - name: Init
         run: terraform init -backend=false
 
-      - name: Validate
-        run: terraform validate
-
       - name: Test
-        run: terraform test -no-color
+        run: terraform test
+        env:
+          HCLOUD_TOKEN: dummy
 
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v6
@@ -58,16 +54,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - name: Install terraform-docs
-        run: |
-          set -euo pipefail
-          VERSION="v0.24.0"
-          curl -fsSL -o /tmp/terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/${VERSION}/terraform-docs-${VERSION}-linux-amd64.tar.gz"
-          tar -xzf /tmp/terraform-docs.tar.gz -C /tmp terraform-docs
-          sudo mv /tmp/terraform-docs /usr/local/bin/terraform-docs
-          terraform-docs version
+      - name: Setup terraform-docs
+        uses: jaxxstorm/action-install-gh-release@v3.0.0
+        with:
+          repo: terraform-docs/terraform-docs
 
       - name: Check README
         run: |

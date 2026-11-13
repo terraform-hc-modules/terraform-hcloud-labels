@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [closed]
 
+permissions:
+  contents: write
+
 jobs:
   handle-release:
     if: github.event.pull_request.merged == true && github.actor != 'dependabot[bot]'

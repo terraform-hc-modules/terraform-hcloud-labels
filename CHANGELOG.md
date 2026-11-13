@@ -1,3 +1,8 @@
+## [v0.3.10] - 2026-11-13
+### :bug: Bug Fixes
+- [`b1e5f19`](https://github.com/terraform-hc-modules/terraform-hcloud-labels/commit/b1e5f194b744fb4eaab3e9f63e0d9c699e9bde1a) - skip CHANGELOG commit when a release adds no entries *(PR [#16](https://github.com/terraform-hc-modules/terraform-hcloud-labels/pull/16) by [@anmolnagpal](https://github.com/anmolnagpal))*
+
+
 ## [0.3.8](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.7...v0.3.8) (2026-11-13)
 
 ### Documentation
@@ -71,3 +76,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Wrappers for for_each usage
 
 [0.1.0]: https://github.com/terraform-hc-modules/terraform-hcloud-labels/releases/tag/v0.1.0
+[v0.3.10]: https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.9...v0.3.10

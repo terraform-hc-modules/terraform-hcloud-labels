@@ -1,3 +1,9 @@
+## [0.3.8](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.7...v0.3.8) (2026-11-13)
+
+### Documentation
+
+* README badge shows Terraform `>= 1.10`, matching the module's `required_version` ([#13](https://github.com/terraform-hc-modules/terraform-hcloud-labels/pull/13), closes [#12](https://github.com/terraform-hc-modules/terraform-hcloud-labels/issues/12))
+
 ## [0.3.5](https://github.com/terraform-hc-modules/terraform-hcloud-labels/compare/v0.3.4...v0.3.5) (2026-04-20)
 
 

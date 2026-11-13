@@ -60,7 +60,13 @@ jobs:
           TAG: ${{ steps.tag.outputs.tag }}
           NOTES: ${{ steps.changelog.outputs.changes }}
         run: |
-          gh release create "$TAG" --verify-tag --latest --title "$TAG" --notes "$NOTES"
+          if [ -n "$NOTES" ]; then
+            gh release create "$TAG" --verify-tag --latest --title "$TAG" --notes "$NOTES"
+          else
+            gh release create "$TAG" --verify-tag --latest --title "$TAG" --generate-notes
+          fi
+          # ci/docs-only releases add nothing to the changelog
+          if git diff --quiet -- CHANGELOG.md; then exit 0; fi
           git add CHANGELOG.md
           git commit -m "docs: update CHANGELOG.md for $TAG"
           git pull --rebase origin "$BRANCH"
